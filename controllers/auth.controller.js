@@ -129,7 +129,7 @@ export const logOut = (req, res) => {
   try {
     return res
       .status(200)
-      .clearCookie("token", { httpOnly: true, sameSite: "none" })
+      .clearCookie("token", { httpOnly: true, sameSite: "none",  secure: true, })
       .json({
         message: "logout successfully",
         success: true,
