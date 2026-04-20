@@ -17,15 +17,15 @@ app.get('/home',(req,res) => {
 })
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
-app.use(cookieParser());
 app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "https://career-spring.netlify.app",
-    "https://career-spring-frontend.netlify.app"  // naya URL
-  ],
-  credentials: true
+    origin: [
+        "http://localhost:5173",
+        "https://career-spring.netlify.app",
+        "https://career-spring-frontend.netlify.app"  // naya URL
+    ],
+    credentials: true
 }));
+app.use(cookieParser());
 console.log(process.env.CLOUD_NAME,"...........CLOUD_NAME,");
 console.log(process.env.API_KEY,"...........API_KEY,");
 console.log(process.env.API_SECRET,"...........API_SECRET,");
