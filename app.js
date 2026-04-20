@@ -18,14 +18,18 @@ app.get('/home',(req,res) => {
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
 app.use(cookieParser());
-const corsOprion = {
-    origin:'http://localhost:5173',
-    credentials:true,
-}
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://career-spring.netlify.app",
+    "https://career-spring-frontend.netlify.app"  // naya URL
+  ],
+  credentials: true
+}));
 console.log(process.env.CLOUD_NAME,"...........CLOUD_NAME,");
 console.log(process.env.API_KEY,"...........API_KEY,");
 console.log(process.env.API_SECRET,"...........API_SECRET,");
-app.use(cors(corsOprion));
+// app.use(cors(corsOprion));
 app.use('/api/auth',authRoutes)
 app.use('/api/user',userRoutes)
 app.use('/api/v1/jobs',jobRoutes)
