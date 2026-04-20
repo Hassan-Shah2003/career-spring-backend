@@ -108,7 +108,7 @@ export const loginUser = async (req, res) => {
       .cookie("token", token, {
         maxAge: 1 * 24 * 60 * 60 * 1000,
         httpOnly: true,
-        sameSite: "strict",
+        sameSite: "none",
         secure: true,
       })
       .json({
@@ -129,7 +129,7 @@ export const logOut = (req, res) => {
   try {
     return res
       .status(200)
-      .clearCookie("token", { httpOnly: true, sameSite: "strict" })
+      .clearCookie("token", { httpOnly: true, sameSite: "none" })
       .json({
         message: "logout successfully",
         success: true,
@@ -160,7 +160,7 @@ export const verifyEmail = async (req, res) => {
     await user.save();
 
     // ✅ React frontend pe redirect
-    return res.redirect("http://localhost:5173/login?verified=true");
+    return res.redirect(`${process.env.FRONTEND_URL}/login?verified=true`);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: "Server error", success: false });
